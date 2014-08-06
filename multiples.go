@@ -41,3 +41,55 @@ func SumEvenValues(s []int) int {
 
 	return r
 }
+
+func PrimeFactorization(n int) []int {
+	r := []int{}
+
+	a := Factorization(n)
+	r = append(r, a...)
+
+	startLength := len(r)
+	endLength := 99
+	for startLength < endLength {
+		startLength = len(r)
+		for i, q := range r {
+			if !Prime(q) {
+				b := Factorization(q)
+
+				r[i] = r[len(r)-1]
+				r = r[:len(r)-1]
+
+				r = append(r, b...)
+			}
+
+			if i == len(r)-1 {
+				endLength = len(r)
+			}
+		}
+	}
+
+
+	return r
+}
+
+func Factorization(n int) []int {
+	r := []int{}
+	for i := 1; i < n; i++ {
+		for j := 1; j < n; j++ {
+			if i*j == n {
+				r = append(r, i, j)
+				return r
+			}
+		}
+	}
+	return r
+}
+
+func Prime(n int) bool {
+	for i := 2; i < n; i++ {
+		if n%i == 0 && n != i {
+			return false
+		}
+	}
+	return true
+}
