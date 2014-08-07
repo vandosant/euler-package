@@ -42,8 +42,8 @@ func SumEvenValues(s []int) int {
 	return r
 }
 
-func PrimeFactorization(n int64) []int64 {
-	r := []int64{}
+func PrimeFactorization(n int) []int {
+	r := []int{}
 
 
 	a := Factorization(n)
@@ -72,25 +72,21 @@ func PrimeFactorization(n int64) []int64 {
 	return r
 }
 
-func Factorization(n int64) []int64 {
-	r := []int64{}
-	var i int64
-	var j int64
+func Factorization(n int) []int {
+	r := []int{}
+	var i int
 
-
-	for i = 1; i < n; i++ {
-		for j = n-1; j > 1; j-- {
-			if i*j == n {
-				r = append(r, i, j)
+	for i = 2; i < n; i++ {
+			if n%i == 0 {
+				r = append(r, i, (n/i))
 				return r
 			}
-		}
 	}
 	return r
 }
 
-func Prime(n int64) bool {
-	var i int64
+func Prime(n int) bool {
+	var i int
 
 	for i = 2; i < n; i++ {
 
