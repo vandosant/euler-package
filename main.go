@@ -102,7 +102,9 @@ func Prime(n int) bool {
 }
 
 func LargestPalindrome(n int) int {
-	var r int
+	if n == 0 || n == 1 {
+		panic("Invalid input. Number must be greater than 1.")
+	}
 
 	ceilStr := ""
 	for i := 0; i < n; i++ {
@@ -113,32 +115,29 @@ func LargestPalindrome(n int) int {
 		panic(err)
 	}
 
-	floorStr := "1"
-	for i := 0; i < n-1; i++ {
-		floorStr = floorStr+"0"
+	number1 := ceil
+	number2 := ceil
+
+
+	for !isPalindrome(number1 * number2) {
+		number1--
 	}
-	floor, err := strconv.Atoi(floorStr)
-	if err != nil {
-		panic(err)
-	}
+	return number1 * number2
+}
 
-	for j := floor; j <= ceil; j++ {
-		for k := floor; k <= ceil; k++ {
-			m := j * k
-			s := strconv.Itoa(m)
+func isPalindrome(number int) bool {
+	s := strconv.Itoa(number)
 
-			runes := []rune(s)
-			for q, w := 0, len(runes) - 1; q < w; q, w = q+1, w-1 {
-				runes[q], runes[w] = runes[w], runes[q]
-			}
-			swapped := string(runes)
-
-			if s == swapped && m > n {
-				n = m
-			}
+	runes := []rune(s)
+	i := 0
+	j := len(runes) - 1
+	for i < j {
+		if runes[i] != runes[j] {
+			return false
 		}
+		i++
+		j--
 	}
 
-	r = n
-	return r
+	return true
 }
