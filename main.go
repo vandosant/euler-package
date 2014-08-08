@@ -1,5 +1,9 @@
 package euler
 
+import (
+	"strconv"
+)
+
 func SumMultiples(v int) int {
 	x := 0
 	for i := 0; i < v; i++ {
@@ -77,10 +81,10 @@ func Factorization(n int) []int {
 	var i int
 
 	for i = 2; i < n; i++ {
-			if n%i == 0 {
-				r = append(r, i, (n/i))
-				return r
-			}
+		if n%i == 0 {
+			r = append(r, i, (n/i))
+			return r
+		}
 	}
 	return r
 }
@@ -95,4 +99,46 @@ func Prime(n int) bool {
 		}
 	}
 	return true
+}
+
+func LargestPalindrome(n int) int {
+	var r int
+
+	ceilStr := ""
+	for i := 0; i < n; i++ {
+		ceilStr = ceilStr+"9"
+	}
+	ceil, err := strconv.Atoi(ceilStr)
+	if err != nil {
+		panic(err)
+	}
+
+	floorStr := "1"
+	for i := 0; i < n-1; i++ {
+		floorStr = floorStr+"0"
+	}
+	floor, err := strconv.Atoi(floorStr)
+	if err != nil {
+		panic(err)
+	}
+
+	for j := floor; j <= ceil; j++ {
+		for k := floor; k <= ceil; k++ {
+			m := j * k
+			s := strconv.Itoa(m)
+
+			runes := []rune(s)
+			for q, w := 0, len(runes) - 1; q < w; q, w = q+1, w-1 {
+				runes[q], runes[w] = runes[w], runes[q]
+			}
+			swapped := string(runes)
+
+			if s == swapped && m > n {
+				n = m
+			}
+		}
+	}
+
+	r = n
+	return r
 }
