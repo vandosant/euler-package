@@ -165,3 +165,29 @@ func SmallestMultiple(n int) int {
 
 	return n
 }
+
+func SumSquareDifference(n int) int {
+
+	sumSquares := SumOfSquares(n)
+	squareSums := SquareOfSums(n)
+
+	return squareSums - sumSquares
+}
+
+func SumOfSquares(n int) int {
+	r := 0
+	for i := 0; i < n+1; i++ {
+		r = r + (i*i)
+	}
+
+	return r
+}
+
+func SquareOfSums(n int) int {
+	r := 0
+	for i := 0; i < n+1; i++ {
+		r = r + i
+	}
+
+	return r * r
+}
