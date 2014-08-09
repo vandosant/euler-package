@@ -1,6 +1,7 @@
 package euler
 
 import (
+	"sort"
 	"strconv"
 )
 
@@ -150,18 +151,19 @@ func SmallestMultiple(n int) int {
 		m = append(m, i+1)
 	}
 
-	for j := n; ; j++ {
+	sort.Sort(sort.Reverse(sort.IntSlice(m)))
 
+	j := n
+	for {
 		for k, b := range m {
 			if j%b != 0 {
+				j++
 				break
 			} else if k == len(m)-1 {
 				return j
 			}
 		}
-
 	}
-
 	return n
 }
 

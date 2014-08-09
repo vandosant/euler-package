@@ -6,8 +6,9 @@ import (
 
 func TestSmallestMultiple(t *testing.T) {
 	a := SmallestMultiple(10)
+	e := 2520
 	if a != 2520 {
-		t.Error("Test failed.")
+		t.Error("Test failed. Expected:", e, "Actual:", a)
 	}
 }
 
