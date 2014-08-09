@@ -106,6 +106,16 @@ func LargestPalindrome(n int) int {
 		panic("Invalid input. Number must be greater than 1.")
 	}
 
+	number1 := largestNDigitNumber(n)
+	number2 := largestNDigitNumber(n)
+
+	for !isPalindrome(number1 * number2) {
+		number1--
+	}
+	return number1 * number2
+}
+
+func largestNDigitNumber(n int) int {
 	ceilStr := ""
 	for i := 0; i < n; i++ {
 		ceilStr = ceilStr+"9"
@@ -115,14 +125,7 @@ func LargestPalindrome(n int) int {
 		panic(err)
 	}
 
-	number1 := ceil
-	number2 := ceil
-
-
-	for !isPalindrome(number1 * number2) {
-		number1--
-	}
-	return number1 * number2
+	return ceil
 }
 
 func isPalindrome(number int) bool {
@@ -140,4 +143,25 @@ func isPalindrome(number int) bool {
 	}
 
 	return true
+}
+
+func SmallestMultiple(n int) int {
+	m := []int{}
+	for i := 0; i < n ; i++ {
+		m = append(m, i+1)
+	}
+
+	for j := n; ; j++ {
+
+		for k, b := range m {
+			if j % b != 0 {
+				break
+			} else if k == len(m)-1 {
+				return j
+			}
+		}
+
+	}
+
+	return n
 }
