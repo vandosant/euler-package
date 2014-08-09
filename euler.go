@@ -49,7 +49,6 @@ func SumEvenValues(s []int) int {
 func PrimeFactorization(n int) []int {
 	r := []int{}
 
-
 	a := Factorization(n)
 	r = append(r, a...)
 
@@ -82,7 +81,7 @@ func Factorization(n int) []int {
 
 	for i = 2; i < n; i++ {
 		if n%i == 0 {
-			r = append(r, i, (n/i))
+			r = append(r, i, (n / i))
 			return r
 		}
 	}
@@ -118,7 +117,7 @@ func LargestPalindrome(n int) int {
 func largestNDigitNumber(n int) int {
 	ceilStr := ""
 	for i := 0; i < n; i++ {
-		ceilStr = ceilStr+"9"
+		ceilStr = ceilStr + "9"
 	}
 	ceil, err := strconv.Atoi(ceilStr)
 	if err != nil {
@@ -147,14 +146,14 @@ func isPalindrome(number int) bool {
 
 func SmallestMultiple(n int) int {
 	m := []int{}
-	for i := 0; i < n ; i++ {
+	for i := 0; i < n; i++ {
 		m = append(m, i+1)
 	}
 
 	for j := n; ; j++ {
 
 		for k, b := range m {
-			if j % b != 0 {
+			if j%b != 0 {
 				break
 			} else if k == len(m)-1 {
 				return j
@@ -177,7 +176,7 @@ func SumSquareDifference(n int) int {
 func SumOfSquares(n int) int {
 	r := 0
 	for i := 0; i < n+1; i++ {
-		r = r + (i*i)
+		r = r + (i * i)
 	}
 
 	return r
