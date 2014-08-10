@@ -1,7 +1,6 @@
 package euler
 
 import (
-	"sort"
 	"strconv"
 )
 
@@ -146,20 +145,13 @@ func isPalindrome(number int) bool {
 }
 
 func SmallestMultiple(n int) int {
-	m := []int{}
-	for i := 0; i < n; i++ {
-		m = append(m, i+1)
-	}
-
-	sort.Sort(sort.Reverse(sort.IntSlice(m)))
-
 	j := n
 	for {
-		for k, b := range m {
-			if j%b != 0 {
+		for i := n; i > 0; i-- {
+			if j%i != 0 {
 				j++
 				break
-			} else if k == len(m)-1 {
+			} else if i == 1 {
 				return j
 			}
 		}
