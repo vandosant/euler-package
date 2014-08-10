@@ -184,3 +184,17 @@ func SquareOfSums(n int) int {
 
 	return r * r
 }
+
+func NthPrimeNumber(n int) int {
+	c := 0
+	var r int
+
+	for i := 2; c < n; i++ {
+		if Prime(i) {
+			c++
+			r = i
+		}
+	}
+
+	return r
+}

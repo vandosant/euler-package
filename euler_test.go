@@ -19,3 +19,11 @@ func TestSumSquareDifference(t *testing.T) {
 		t.Error("Test failed. Expected:", e, "Actual:", a)
 	}
 }
+
+func TestNthPrimeNumber(t *testing.T) {
+	a := NthPrimeNumber(6)
+	e := 13
+	if a != e {
+		t.Error("Test failed. Expected:", e, "Actual:", a)
+	}
+}
