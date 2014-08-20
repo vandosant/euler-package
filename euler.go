@@ -198,3 +198,29 @@ func NthPrimeNumber(n int) int {
 
 	return r
 }
+
+func LargestProductInSeries(s []string, l int) int {
+	r := 0
+	nums := []int{}
+	for i := 0; i < len(s[0]); i++ {
+		n, err := strconv.ParseInt(string(s[0][i]), 0, 0)
+		if err != nil {
+			panic(err)
+		}
+		nums = append(nums, int(n))
+	}
+
+	length := len(nums)-l
+	for i, n := range nums {
+		if (i+l < length) {
+			p := n
+			for j := 1; j < l; j++ {
+				p = p * nums[i+j]
+			}
+			if p > r {
+				r = p
+			}
+		}
+	}
+	return r
+}
